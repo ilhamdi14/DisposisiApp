@@ -57,7 +57,7 @@
 </div>
 </div>
 
-
+@if (auth()->user()->grade != 'Unit')
   <div class="relative z-0 w-full mb-5 group">
     <label for="sifat_surat" class="block mb-2 text-sm font-medium text-gray-500 dark:text-white">Disposisi</label>
   <select id="kepada_user_id" name="kepada_user_id" class="bg-transparent border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -74,23 +74,33 @@
   <textarea id="catatan" name="catatan" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tuliskan Catatan Disposisi..." required></textarea>
   
   </div>
+  @endif
   <input type="hidden" id="dispo_id" name="memoId" value="{{$memo->id}}">
   <input type="hidden" id="memoId" name="memoId" value="{{$memo->id}}">
   <input type="hidden" id="userId" name="userId" value="{{Auth::user()->id}}">
   <input type="hidden" id="old_UserId" name="old_UserId" value="{{$memo->id}}">
 
+
   
-  @if (auth()->user()->grade == 'Pimpinan')
+  
+      
+ 
       <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Simpan</button>
-      </form>
-  @else
-      <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Simpan</button>
-      </form>
-      <form method="POST" action="{{ route('selesaiDispo') }}">
+</form>
+      {{-- <form method="POST" action="{{ route('selesaiDispo') }}">
         @csrf
         <input type="hidden" id="memoIdX" name="memoIdX" value="{{$memo->id}}">
         <button type="submit" id="selesai" class="text-white bg-blue-200 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm mt-2  w-full  sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Selesai</button>
+      </form> --}}
+      
+    
+  @if (auth()->user()->grade == 'Unit')
+      <form method="POST" action="{{ route('selesaiDispo') }}">
+        @csrf
+        <input type="hidden" id="memoIdX" name="memoIdX" value="{{$memo->id}}">
+        <button type="submit" id="selesai" class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm mt-2  w-full  sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">SelesaiXX</button>
       </form>
+
   @endif
 
 

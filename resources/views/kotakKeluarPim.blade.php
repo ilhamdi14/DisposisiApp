@@ -52,9 +52,10 @@
                     {{$dis->memo->tgl_surat}}
                 </td>
                 
-                <td class="px-6 py-4 text-right">
-                    <a href="{{ route('tracking', $dis->memo->no_surat) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Tracking</a>
-                </td>
+                    <td class="px-6 py-4 text-right">
+                        <a href="{{ route('tracking', $dis->memo->no_surat) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Tracking</a>
+                    </td>
+                
             </tr>
             @empty
              <div id="alert-1" class="flex items-center p-4 mb-4 text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">

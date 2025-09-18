@@ -13,6 +13,9 @@
                     Nama
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    Username
+                </th>
+                <th scope="col" class="px-6 py-3">
                     Jabatan
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -39,6 +42,9 @@
                     {{$user->name}}
                 </th>
                 <td class="px-6 py-4">
+                    {{$user->email}}
+                </td>
+                <td class="px-6 py-4">
                     {{$user->jabatan->namaJabatan}}
                 </td>
                 <td class="px-6 py-4">
@@ -53,7 +59,7 @@
                 </td>
                 
                 <td class="px-6 py-4 text-right">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    <a href="{{ route('editUser', $user->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                 </td>
             </tr>
             @empty

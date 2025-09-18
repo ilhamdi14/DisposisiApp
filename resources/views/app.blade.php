@@ -42,13 +42,13 @@
         <!-- Dropdown menu -->
         <div class="relative max-w-sm">
           
-        <select id="dropdownDefaultButton" name="sifat" class="bg-transparent border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <select id="cekLaporan" name="cekLaporan" class=" form-control bg-transparent border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-          <option value="Biasa">Kemarin</option>
-          <option value="Rahasia">Hari Ini</option>
-          <option value="Sangat Rahasia">7 Hari Terakhir</option>
-          <option value="Sangat Rahasia">30 Hari Terakhir</option>
-          <option value="Sangat Rahasia">Setahun Terakhir</option>
+          <option value="kemarin">Kemarin</option>
+          <option value="hari ini">Hari Ini</option>
+          <option value="7 hari terakhir">7 Hari Terakhir</option>
+          <option value="30 hari terakhir">30 Hari Terakhir</option>
+          <option value="Setahun terakhir">Setahun Terakhir</option>
         </select>
         </div>
         
@@ -68,6 +68,7 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+          
             const ctx = document.getElementById('myChart');
             
             var data = <?php echo json_encode($label); ?>;
@@ -100,8 +101,31 @@
                     // Chart.js options
                 }
             });
+
+            
+            
         });
+
+        
     
+      </script>
+
+    <script>
+      document.getElementById('cekLaporan').addEventListener('change', function() {
+        var selectedOption = this.value;
+            if (selectedOption === 'kemarin') {
+              // Lakukan tindakan jika opsi "kemarin" dipilih
+              alert('Kemarin dipilih');
+
+            }
+            else {
+              // Lakukan tindakan jika opsi "kemarin" tidak dipilih
+              alert('Kemarin tidak dipilih');
+            }
+
+    });
+        
+        
       </script>
   
     {{-- <script>

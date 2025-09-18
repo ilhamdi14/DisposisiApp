@@ -53,4 +53,21 @@ class RegisterController extends Controller
          return redirect()->route('register.index')->with(['title' => 'Data User','users' => $user]);
         // return Redirect::back();
     }
+
+    public function edit(string $id)
+    {
+        $instansi = Instansi::all();
+        $jabatan = Jabatan::all();
+        $users = User::findOrFail($id);
+        return view('setting.editDataUser', ['title' => 'Edit User','instansi' => $instansi,'jabatan' => $jabatan,'users' => $users]);
+        
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
 }

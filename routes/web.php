@@ -29,9 +29,9 @@ Route::resource('dispo', DispoController::class);
 //Dispossisi
 Route::get('/kotakKeluarPim', [DispoController::class, 'kotakKeluarPim'])->name('dispo.kotakKeluarPim');
 
-//Route::post('/selesaiDispo', [DispoController::class, 'selesaiDispo'])->name('selesaiDispo');
+Route::post('/selesaiDispo', [DispoController::class, 'selesaiDispo'])->name('selesaiDispo');
 //Route::post('/selesaiDispo', [DashboardController::class, 'sendWa'])->name('selesaiDispo');
-Route::post('/selesaiDispo', [DashboardController::class, 'send'])->name('selesaiDispo');
+//Route::post('/selesaiDispo', [DashboardController::class, 'send'])->name('selesaiDispo');
 
 //tracking
 Route::get('/tracking/{id}', [DispoController::class, 'tracking'])->name('tracking');
@@ -45,22 +45,28 @@ Route::get('/tracking', function () {
 
 
 //simpan memo
+Route::get('/createMemo', [MemoController::class, 'create'])->name('memo.create');
 Route::get('/kotakMasuk', [MemoController::class, 'index'])->name('memo.index');
 Route::get('/kotakKeluar', [MemoController::class, 'kotakKeluar'])->name('memo.kotakKeluar');
 Route::get('/kotakKeluarDispo', [DispoController::class, 'kotakKeluar'])->name('dispo.kotakKeluar');
 Route::get('/memo/{file}/download', [MemoController::class, 'download'])->name('memo.download');
+Route::get('/kotakKeluarUnit', [MemoController::class, 'kotakKeluarUnit'])->name('memo.kotakKeluarUnit');
 
 Route::get('/view-pdf/{id}', [MemoController::class, 'viewPDF'])->name('view-pdf');
 
 
 Route::get('/createUser', [RegisterController::class, 'create'])->name('user.create');
 Route::get('/dataUser', [RegisterController::class, 'index'])->name('user.index');
+Route::get('/editUser/{id}', [RegisterController::class, 'edit'])->name('editUser');
+//Route::get('/tracking/{id}', [DispoController::class, 'tracking'])->name('tracking');
+
 
 //login
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 //logout
 Route::post('/logout', [LoginController::class, 'logout']);
+
 
 
 

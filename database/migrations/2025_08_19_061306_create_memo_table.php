@@ -21,6 +21,8 @@ return new class extends Migration
             $table->date('tgl_surat');
             $table->string('no_surat');
             $table->string('status');
+            $table->unsignedBigInteger('pengirim_id');
+            $table->foreign('pengirim_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

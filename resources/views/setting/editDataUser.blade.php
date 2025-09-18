@@ -4,7 +4,7 @@
     
 <div class="max-w-md w-full mx-auto bg-white rounded-lg shadow-sm dark:bg-gray-800 p-4 md:p-6">
   <div class=" justify-between border-gray-200 border-b dark:border-gray-700 pb-3">
-<form class="max-w-md mx-auto" action="{{ route('register.store') }}" method="POST" >
+<form class="max-w-md mx-auto" action="{{ route('register.update', $users) }}" method="POST" >
 
   @csrf
 
@@ -12,6 +12,7 @@
   <div class="relative z-0 w-full mb-5 group">
     <label for="instansi_surat" class="block mb-2 text-sm font-medium text-gray-500 dark:text-white">Instansi</label>
   <select id="instansi" name="instansi" class="bg-transparent border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-70  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <option value="{{ $users->instansi->id }}">{{ $users->instansi->namaInstansi }}</option>
     @foreach ($instansi as $item )
      <option value={{$item->id}}>{{ $item->namaInstansi }}</option>
     @endforeach
@@ -29,7 +30,7 @@
   <div class="relative z-0 w-full mb-5 group">
     <label for="jabatan" class="block mb-2 text-sm font-medium text-gray-500 dark:text-white">Jabatan</label>
   <select id="jabatan" name="jabatan" class="bg-transparent border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-70  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-   
+    <option value="{{ $users->jabatan->id }}">{{ $users->jabatan->namaJabatan }}</option>
     @foreach ($jabatan as $itemJabatan )
      <option value={{$itemJabatan->id}}>{{ $itemJabatan->namaJabatan }}</option>
     @endforeach
@@ -47,29 +48,34 @@
   
   
   <div class="relative z-0 w-full mb-5 group">
-      <input type="text" name="nama" id="nama" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <input type="text" name="nama" id="nama" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" value="{{ $users->name }}" placeholder=" " />
       <label for="nama" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nama User</label>
   </div>
   
    
   <div class="relative z-0 w-full mb-5 group">
-      <input type="text" name="email" id="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <input type="text" name="email" id="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="{{ $users->email }}" />
       <label for="email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Username</label>
+  </div>
+
+   <div class="relative z-0 w-full mb-5 group">
+      <input type="password" name="password" id="password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <label for="password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
   </div>
   
   
 
   <div class="relative z-0 w-full mb-5 group">
-      <input type="number" name="nowa" id="nowa" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <input type="number" name="nowa" id="nowa" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="{{ $users->no_wa }}" />
       <label for="nowa" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">No. HP</label>
   </div>
 
   <div class="relative z-0 w-full mb-5 group">
     <label for="grade" class="block mb-2 text-sm font-medium text-gray-500 dark:text-white">Grade</label>
   <select id="grade" name="grade" class="bg-transparent border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-70  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
+    <option value="{{ $users->grade }}">{{ $users->grade }}</option>
     <option value="Pimpinan">Pimpinan</option>
-    <option value="Unit">Unit</option>
+    <option value="Admin">Admin</option>
     <option value="Umum">Umum</option>
   </select>
   

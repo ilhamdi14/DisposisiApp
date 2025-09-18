@@ -29,7 +29,15 @@ class MemoController extends Controller
 
     public function kotakKeluar() : View
     {
-        $memos = Memo::where('status','PROGRESS')->get();
+        $memos = Memo::where('status','PROGRESS')->orWhere('status','SELESAI')->orderBy('created_at', 'desc')->get();
+        //dd(auth()->user()->name);
+        return view('kotakKeluar', ['title' => 'Kotak Keluar','memos' => $memos])->with(compact('memos')) ->with('i', (request()->input('page', 1) - 1) * 5);
+    
+    }
+
+    public function kotakKeluarUnit() : View
+    {
+        $memos = Memo::where('status','NEW')->get();
         //dd(auth()->user()->name);
         return view('kotakKeluar', ['title' => 'Kotak Keluar','memos' => $memos])->with(compact('memos')) ->with('i', (request()->input('page', 1) - 1) * 5);
     
@@ -67,10 +75,12 @@ class MemoController extends Controller
             'isi_surat' => $request->perihal,
             'tgl_surat' =>  date('Y-m-d', strtotime($request->tanggal)),//$request->tanggal,
             'no_surat' => $request->nomor,
+            'pengirim_id' => auth()->user()->id,
             'status' => 'NEW',
         ]);
                    
-            return redirect()->route('memo.create')->with(['title' => 'Create Memo']);
+            //return redirect()->route('memo.create')->with(['title' => 'Create Memo']);
+           return redirect()->route('memo.index')->with(['title' => 'Data Surat'])->with('success','Product created successfully.');
         
         
         

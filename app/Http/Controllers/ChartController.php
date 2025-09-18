@@ -51,4 +51,6 @@ class ChartController extends Controller
         
         return view('app', ['data' => compact('data'),'label' => $label,'total' => $total, 'jlhSurat' => $jlhSurat], ['title' => 'Chart']);
     }
+
+    
 }

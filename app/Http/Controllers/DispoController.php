@@ -26,6 +26,10 @@ class DispoController extends Controller
         Dispo::where('memo_id', $request->memoIdX)->where('status', 'new')->update([
                 'status' => 'SELESAI',
             ]);
+
+        Memo::where('id', $request->memoIdX)->update([
+                'status' => 'SELESAI',
+            ]);
             
         //dd($request->all());
         return redirect()->back()->with('success', 'Disposisi telah selesai.');
@@ -34,7 +38,7 @@ class DispoController extends Controller
     public function kotakKeluarPim() : View
     {
         //$dispo = Dispo::where('user_id', auth()->user()->id)->get();
-        $dispo = Dispo::where('user_id', auth()->user()->id)->get();;
+        $dispo = Dispo::where('user_id', auth()->user()->id)->get();
         //dd($dispo->all());
         return view('kotakkeluarPim', ['title' => 'Kotak Keluar Disposisi','dispo' => $dispo])->with(compact('dispo')) ->with('i', (request()->input('page', 1) - 1) * 5);
     }

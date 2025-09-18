@@ -56,7 +56,7 @@ class DashboardController extends Controller
         $nowa = User::select('no_wa')->where('id', $request->kepada_user_id)->first();
         $link = "Berikut Link Unutk di Disposisi kan \n <a href='https://google.com' target='_blank'>Klik Disini</a> \n Terima Kasih";
 
-        $this->sendA($nowa->no_wa, $link);
+        //$this->sendA($nowa->no_wa, $link);
         
         
         //return view('kotakMasuk', ['title' => 'Data User'])->with('success','Product created successfully.');

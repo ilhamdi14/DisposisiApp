@@ -51,10 +51,19 @@
                 <td class="px-6 py-4">
                     {{$memo->tgl_surat}}
                 </td>
-                
+                @if (auth()->user()->grade != 'Unit')
                 <td class="px-6 py-4 text-right">
                     <a href="{{ route('tracking', $memo->no_surat) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Tracking</a>
                 </td>
+                <td>
+                    @if ($memo->status == 'PROGRESS')
+                        <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300">PROGRESS</span>
+                    @else
+                        <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-green-900 dark:text-green-300">SELESAI</span>
+                    @endif
+                    
+                </td>
+                @endif
             </tr>
             @empty
              <div id="alert-1" class="flex items-center p-4 mb-4 text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">

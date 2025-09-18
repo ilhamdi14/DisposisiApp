@@ -10,10 +10,16 @@
               <!-- Current: "bg-gray-900 dark:bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
               {{-- Pimpinan --}}
               @if (auth()->user()->grade == 'Pimpinan')
+                <x-navlink href="#" :active="request()->is('kotakKeluarDispo')">Buat Memo</x-navlink> 
                 <x-navlink href="/kotakKeluarDispo" :active="request()->is('kotakKeluarDispo')">Kotak Masuk</x-navlink> 
                 <x-navlink href="/kotakKeluarPim" :active="request()->is('kotakKeluarPim')">Kotak Keluar</x-navlink>
-              @else
               
+                @elseif(auth()->user()->grade == 'Unit')
+                <x-navlink href="/buatMemo" :active="request()->is('kotakKeluarDispo')">Kirim Surat</x-navlink> 
+                <x-navlink href="/kotakKeluarDispo" :active="request()->is('kotakKeluarDispo')">Kotak Masuk</x-navlink> 
+                <x-navlink href="/kotakKeluarUnit" :active="request()->is('kotakKeluarUnit')">Kotak Keluar</x-navlink>
+
+              @else
               <x-navlink href="/home" :active="request()->is('home')">Dashboard</x-navlink>
               
               <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-gray-850/50  hover:bg-white/5 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Memo <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -28,10 +34,10 @@
                           <a href="/buatMemo" :active="request()->is('buatMemo')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Buat Memo</a>
                         </li>
                         <li>
-                          <a href="/kotakMasuk" :active="request()->is('kotakMasuk')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Kotak Masuk Memo</a>
+                          <a href="/kotakMasuk" :active="request()->is('kotakMasuk')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Kotak Masuk Disposisi</a>
                         </li>
                         <li>
-                          <a href="/kotakKeluarDispo" :active="request()->is('kotakKeluarDispo')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Kotak Masuk Disposisi</a>
+                          <a href="/kotakKeluarDispo" :active="request()->is('kotakKeluarDispo')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Memo Pimpinan</a>
                         </li>
                       </ul>
                   </div>
