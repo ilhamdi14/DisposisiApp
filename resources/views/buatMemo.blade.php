@@ -44,6 +44,7 @@
     <option value="Biasa">Biasa</option>
     <option value="Rahasia">Rahasia</option>
     <option value="Sangat Rahasia">Sangat Rahasia</option>
+    <option value="Segera">Segera</option>
   </select>
   </div>
 

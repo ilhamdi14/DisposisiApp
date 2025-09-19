@@ -49,8 +49,9 @@ class DispoController extends Controller
     {
         //$tracking = DB::table('dispos')->leftJoin('memo', 'memo.id', '=', 'dispos.memo_id')->where('no_surat', $noSurat)->get();
         $tracking = Dispo::select('dispos.*')->leftJoin('memo', 'memo.id', '=', 'dispos.memo_id')->where('no_surat', $noSurat)->orWhere('memo.id', $noSurat)->get();
+        $memo = Memo::where('no_surat', $noSurat)->orWhere('memo.id', $noSurat)->first();
         //dd($tracking);
-        return view('/tracking', ['title' => 'Tracking','tracking' => $tracking]);
+        return view('/tracking', ['title' => 'Tracking','tracking' => $tracking, 'memo' => $memo]);
     }
 
     public function search(Request $request) : View

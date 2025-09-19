@@ -43,7 +43,8 @@
                       </ul>
                   </div>
               
-              <x-navlink href="/kotakKeluar" :active="request()->is('kotakKeluar')">Kotak Keluar</x-navlink>
+              <x-navlink href="/kotakKeluar" :active="request()->is('kotakKeluar')">Kotak Keluar 
+              <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span></x-navlink>
               <x-navlink href="{{ route('tracking', 0) }}" :active="request()->is('tracking')">Tracking</x-navlink>
               <x-navlink href="/createUser" :active="request()->is('createUser')">Create User</x-navlink>
               <x-navlink href="/dataUser" :active="request()->is('dataUser')">Data User</x-navlink>
@@ -55,7 +56,7 @@
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6">
             
-
+            
             <!-- Profile dropdown -->
             <el-dropdown class="relative ml-3">
               <button class="relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
@@ -65,6 +66,7 @@
               </button>
 
               <el-menu anchor="bottom end" popover class="w-48 origin-top-right rounded-md bg-white py-1 shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
+              
                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden dark:text-gray-300 dark:focus:bg-white/5">Welcome, {{ auth()->user()->name }}</a>
                 
                 <form action="/logout" method="POST">
