@@ -10,9 +10,10 @@
               <!-- Current: "bg-gray-900 dark:bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
               {{-- Pimpinan --}}
               @if (auth()->user()->grade == 'Pimpinan')
-                <x-navlink href="#" :active="request()->is('kotakKeluarDispo')">Buat Memo</x-navlink> 
+                <x-navlink href="/memoPimpinan" :active="request()->is('kotakKeluarDispo')">Buat Memo</x-navlink> 
                 <x-navlink href="/kotakKeluarDispo" :active="request()->is('kotakKeluarDispo')">Kotak Masuk</x-navlink> 
-                <x-navlink href="/kotakKeluarPim" :active="request()->is('kotakKeluarPim')">Kotak Keluar</x-navlink>
+                <x-navlink href="/kotakKeluarPim" :active="request()->is('kotakKeluarPim')">Kotak Keluar Disposisi</x-navlink>
+                <x-navlink href="/kotakKeluarMemo" :active="request()->is('kotakKeluarMemo')">Kotak Keluar Memo</x-navlink>
               
                 @elseif(auth()->user()->grade == 'Unit')
                 <x-navlink href="/buatMemo" :active="request()->is('kotakKeluarDispo')">Kirim Surat</x-navlink> 
@@ -37,7 +38,7 @@
                           <a href="/kotakMasuk" :active="request()->is('kotakMasuk')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Kotak Masuk Disposisi</a>
                         </li>
                         <li>
-                          <a href="/kotakKeluarDispo" :active="request()->is('kotakKeluarDispo')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Memo Pimpinan</a>
+                          <a href="/kotakMasukMemoPimpinan" :active="request()->is('kotakMasukMemoPimpinan')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Memo Pimpinan</a>
                         </li>
                       </ul>
                   </div>

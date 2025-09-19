@@ -1,69 +1,60 @@
 <x-layout>
-  <x-slot:title>{{ $title }}</x-slot:title>
+ <x-slot:title>{{ $title }}</x-slot:title> 
   
-   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
             Kotak Keluar
-            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Daftar Surat yang di Disposisi.</p>
+            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Daftar Memo Keluar.</p>
         </caption>
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Asal Surat
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Perihal
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    No. Surat
+                    Perihal Surat
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Sifat Surat
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Tgl. Masuk
+                    Catatan
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Status
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Tgl. Buat
                 </th>
                 
                 <th scope="col" class="px-6 py-3">
-                    <span class="sr-only">Tracking</span>
+                    <span class="sr-only">Aksi</span>
                 </th>
             </tr>
         </thead>
         <tbody>
             
-            @forelse ($memos as $memo)
+            @forelse ($memos as $dis)
                 
             
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {{$memo->tujuan}}
+                    {{$dis->perihal}}
                 </th>
                 <td class="px-6 py-4">
-                    {{$memo->perihal}}
+                    {{$dis->sifat_surat}}
                 </td>
                 <td class="px-6 py-4">
-                    {{$memo->no_surat}}
+                    {{$dis->catatan}}
                 </td>
                 <td class="px-6 py-4">
-                    {{$memo->sifat_surat}}
+                    {{$dis->status}}
                 </td>
                 <td class="px-6 py-4">
-                    {{$memo->tgl_surat}}
+                    {{$dis->created_at}}
                 </td>
-                @if (auth()->user()->grade != 'Unit')
-                <td class="px-6 py-4 text-right">
-                    <a href="{{ route('tracking', $memo->no_surat) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Tracking</a>
-                </td>
-                @endif
-                <td>
-                    @if ($memo->status == 'PROGRESS')
-                        <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300">PROGRESS</span>
-                    @elseif($memo->status == 'SELESAI')
-                        <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-green-900 dark:text-green-300">SELESAI</span>
-                    @endif
-                    
-                </td>
+                
+                    <td class="px-6 py-4 text-right">
+                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    </td>
                 
             </tr>
             @empty
@@ -88,4 +79,5 @@
         </tbody>
     </table>
 </div>
+
 </x-layout>

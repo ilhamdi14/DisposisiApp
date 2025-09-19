@@ -52,6 +52,15 @@ Route::get('/kotakKeluarDispo', [DispoController::class, 'kotakKeluar'])->name('
 Route::get('/memo/{file}/download', [MemoController::class, 'download'])->name('memo.download');
 Route::get('/kotakKeluarUnit', [MemoController::class, 'kotakKeluarUnit'])->name('memo.kotakKeluarUnit');
 
+Route::post('/storeMemoPimpinan', [MemoController::class, 'storeMemoPimpinan'])->name('storeMemoPimpinan');
+Route::get('/kotakKeluarMemo', [MemoController::class, 'kotakKeluarmemo'])->name('memo.kotakKeluarMemo');
+Route::get('/kotakMasukMemoPimpinan', [MemoController::class, 'kotakMasukMemoPimpinan'])->name('memo.kotakMasukMemoPimpinan');
+
+Route::get('/memoPimpinan', function () {
+    
+    return view('buatMemoPimpinan',['title' => 'Memo Pimpinan']);
+});
+
 Route::get('/view-pdf/{id}', [MemoController::class, 'viewPDF'])->name('view-pdf');
 
 

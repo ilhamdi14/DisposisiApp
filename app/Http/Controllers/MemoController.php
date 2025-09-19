@@ -11,6 +11,7 @@ use Illuminate\Validation\Rules\File;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Memo;
+use App\Models\Memopimpinan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Jabatan;
@@ -27,6 +28,49 @@ class MemoController extends Controller
         return view('kotakMasuk', ['title' => 'Kotak Masuk','memos' => $memos])->with(compact('memos')) ->with('i', (request()->input('page', 1) - 1) * 5); 
     }
 
+    public function storeMemoPimpinan(Request $request) : RedirectResponse
+    {
+        
+        $validator = Validator::make($request->all(), [
+            'perihal' => $request->perihal,
+            'sifat_surat'=> $request->sifat,
+            'catatan'=> $request->catatan,
+            'pimpinan_id'=>$request->userId,
+
+ 
+        ]);
+        
+        
+        //create memo
+        $memos = Memopimpinan::create([
+            'perihal' => $request->perihal,
+            'sifat_surat'=> $request->sifat,
+            'catatan'=> $request->catatan,
+            'pimpinan_id'=>$request->userId,
+            'status' => 'NEW',
+        ]);
+                   
+            //return redirect()->route('memo.create')->with(['title' => 'Create Memo']);
+           return redirect()->route('memo.kotakKeluarMemo')->with(['title' => 'Kotak Keluar Memo']);
+        
+    }
+
+    public function kotakMasukMemoPimpinan() : View
+    {
+        $memos = Memopimpinan::all();
+       // dd($memos);
+        return view('masukMemoPimpinan', ['title' => 'Kotak Masuk Memo Pimpinan','memos' => $memos])->with(compact('memos')) ->with('i', (request()->input('page', 1) - 1) * 5);
+    
+    }
+
+    public function kotakKeluarMemo() : View
+    {
+        $memos = Memopimpinan::all();
+        //dd(auth()->user()->name);
+        return view('kotakKeluarMemo', ['title' => 'Kotak Keluar','memos' => $memos])->with(compact('memos')) ->with('i', (request()->input('page', 1) - 1) * 5);
+    
+    }
+
     public function kotakKeluar() : View
     {
         $memos = Memo::where('status','PROGRESS')->orWhere('status','SELESAI')->orderBy('created_at', 'desc')->get();
@@ -37,7 +81,7 @@ class MemoController extends Controller
 
     public function kotakKeluarUnit() : View
     {
-        $memos = Memo::where('status','NEW')->get();
+        $memos = Memo::orderBy('created_at', 'desc')->get();
         //dd(auth()->user()->name);
         return view('kotakKeluar', ['title' => 'Kotak Keluar','memos' => $memos])->with(compact('memos')) ->with('i', (request()->input('page', 1) - 1) * 5);
     
